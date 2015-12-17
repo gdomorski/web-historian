@@ -51,11 +51,13 @@ exports.isUrlInList = function(url, callback) {
   });
 };
 
-exports.addUrlToList = function(url) {
+exports.addUrlToList = function(url,callback) {
   // fs.readFile(exports.paths['list'], 'utf8', function(err, data){
   //   console.log(data);
   //   console.log(url);
-    fs.appendFile(exports.paths['list'], url, 'utf8');
+    fs.appendFile(exports.paths['list'], url, 'utf8',function(){
+      callback();
+    });
 };
 
 exports.isUrlArchived = function(url, callback) {

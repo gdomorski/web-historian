@@ -28,7 +28,6 @@ exports.handleRequest = function (req, res) {
     if(req.method === "POST"){
       statusCode = 302;
       //fs.appendFile(archive.paths.list, req.url)
-
       req.on('data',function(chunk){
         chunk = chunk.slice(4);
         // console.log(JSON.parse(chunk));
