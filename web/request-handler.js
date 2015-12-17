@@ -13,7 +13,6 @@ exports.handleRequest = function (req, res) {
     if(err){
       throw err;
     }
-    console.log(req.url)
 
     if (req.method === "GET" && req.url === '/www.google.com') {
       res.end('google');
@@ -31,11 +30,11 @@ exports.handleRequest = function (req, res) {
       //fs.appendFile(archive.paths.list, req.url)
 
       req.on('data',function(chunk){
-        chunk = chunk.slice(4)
+        chunk = chunk.slice(4);
+        // console.log(JSON.parse(chunk));
+        // JSON.stringify(chunk);
         fs.appendFile('/Users/student/Desktop/2015-11-web-historian/test/testdata/sites.txt', chunk + '\n')
       });
-      //'www.example.com\n'
-      //fs.appendFile('/Users/student/Desktop/2015-11-web-historian/web/archives/sites.txt', 'www.example.com\n')
       res.writeHead(statusCode, archive.headers);
       res.end();
     }
