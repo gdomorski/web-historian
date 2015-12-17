@@ -12,21 +12,21 @@ exports.handleRequest = function (req, res) {
     if(err){
       throw err;
     }
-    if (req.method === "GET") {
+    console.log(req.url)
+
+    if (req.method === "GET" && req.url === '/www.google.com') {
+      res.end('google');
+    }else if(req.method === "GET" && req.url === '/arglebargle'){
+      statusCode = 404;
       res.writeHead(statusCode, archive.headers);
+      res.end();
+    }else if(req.method ==="GET"){
       res.write(html);
       res.end();
+    }
 
-      if(req.url === 'google.com'){
-        sites.txt
-
-      }  
         //check if the url is in the list
           //if it is not, add the url to the list addUrlToList
-
-
-
-    }
   })
 
 };
