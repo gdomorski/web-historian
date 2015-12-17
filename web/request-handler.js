@@ -4,6 +4,7 @@ var http = require('http');
 var fs = require('fs');
 
 
+
 // require more modules/folders here!
 var statusCode = 200;
 
@@ -22,6 +23,20 @@ exports.handleRequest = function (req, res) {
       res.end();
     }else if(req.method ==="GET"){
       res.write(html);
+      res.end();
+    }
+
+    if(req.method === "POST"){
+      statusCode = 302;
+      //fs.appendFile(archive.paths.list, req.url)
+
+      req.on('data',function(chunk){
+        chunk = chunk.slice(4)
+        fs.appendFile('/Users/student/Desktop/2015-11-web-historian/test/testdata/sites.txt', chunk + '\n')
+      });
+      //'www.example.com\n'
+      //fs.appendFile('/Users/student/Desktop/2015-11-web-historian/web/archives/sites.txt', 'www.example.com\n')
+      res.writeHead(statusCode, archive.headers);
       res.end();
     }
 
